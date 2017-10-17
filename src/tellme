@@ -13,7 +13,7 @@ pkg_search() {
     dpkg -S "$1"
   fi
   if [ -e /etc/redhat-release ]; then
-    rpm -qf "$realpath"
+    rpm -qf "$1"
   fi
 }
 
@@ -31,11 +31,14 @@ if [ -n "$what" ]; then
   fi
 
   pathname=`which "$what"`
-  realpath=`realpath "$pathname"`
-  file "$realpath"
-  pkg_search "$realpath"
+  real_pathname=`realpath "$pathname"`
+  if [ "$pathname" != "$real_pathname" ]; then
+    file "$pathname"
+  fi
+  file "$real_pathname"
+  pkg_search "$real_pathname"
 fi
 
 if [ -n "$cmd" ]; then
-  $cmd "$realpath"
+  $cmd "$real_pathname"
 fi
