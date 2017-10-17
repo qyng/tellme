@@ -1,0 +1,11 @@
+Source: tellme
+Section: devel
+Priority: optional
+Maintainer: Qi Yong <qiy@vecl.cn>
+Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 9.20120311)
+
+Package: tellme
+Architecture: all
+Description: tellme
+ tellme

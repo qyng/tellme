@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# Copyright (C) 2016, 2017  Qi Yong <qiy@vecl.cn>
+#
+# 2016-06-29
+
+set -e
+what="$1"
+cmd="$2"
+
+pkg_search() {
+  if [ -e /etc/debian_version ]; then
+    dpkg -S "$1"
+  fi
+  if [ -e /etc/redhat-release ]; then
+    rpm -qf "$realpath"
+  fi
+}
+
+if [ -z "$what" ]; then
+  echo "what to tell you?"
+  echo "usage: `basename $0` <what> [cmd]"
+fi
+
+if [ -n "$what" ]; then
+  # locate what
+  if [ -e "$what" ]; then
+    file "$what"
+    pkg_search "$what"
+    exit 0
+  fi
+
+  pathname=`which "$what"`
+  realpath=`realpath "$pathname"`
+  file "$realpath"
+  pkg_search "$realpath"
+fi
+
+if [ -n "$cmd" ]; then
+  $cmd "$realpath"
+fi
