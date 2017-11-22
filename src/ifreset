@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+# (c) 2017-11-21  Qi Yong <qiy@vecl.cn>
+#
+
+
+if [ ! -r $HOME/.config/ifreset ]; then
+  echo "$HOME/.config/ifreset not configured";
+  echo "ifreset_gw="
+  echo "ifreset_inf="
+  exit 1
+fi
+
+source $HOME/.config/ifreset
+if [ -z "$ifreset_gw" ]  ; then
+  echo 'ifreset_gw unset'; exit 1
+fi
+if [ -z "$ifreset_inf" ] ; then
+  echo 'ifreset_inf unset'; exit 1
+fi
+
+#
+# ? sudo dhclient $ifreset_inf
+#
+reset () {
+  echo "reset $ifreset_inf"
+  sudo ifdown $ifreset_inf
+  sleep 2
+  sudo ifup $ifreset_inf
+}
+
+try_gw () {
+	echo "ping $ifreset_gw "
+	ping -c3 -W5 $ifreset_gw > /dev/null
+	if [ $? -eq 0 ]; then
+		echo "success"
+		return 0
+	fi
+	echo "failed"
+	return 255
+}
+
+sig_handler () {
+  echo
+  exit
+}
+trap sig_handler SIGINT
+
+# reset
+while ! try_gw ; do
+  reset
+  read -t 3 -p 'continue or press CTRL-C to break '
+  echo
+done

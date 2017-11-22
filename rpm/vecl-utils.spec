@@ -1,9 +1,9 @@
-Name:       tellme
-Version:    1.1
+Name:       vecl-utils
+Version:    1.0
 Release:    1
-Summary:    tellme
+Summary:    vecl utils
 License:    GPL
-Source:     tellme_1.1.tar.xz
+Source:     vecl-utils_1.0.tar.xz
 BuildArchitectures: noarch
 
 %description
@@ -13,7 +13,10 @@ BuildArchitectures: noarch
 
 %install
 install -d $RPM_BUILD_ROOT/usr/bin
+install -d $RPM_BUILD_ROOT/usr/sbin
+install src/ifreset $RPM_BUILD_ROOT/usr/sbin
 install src/tellme $RPM_BUILD_ROOT/usr/bin
 
 %files
+%{_sbindir}/ifreset
 %{_bindir}/tellme

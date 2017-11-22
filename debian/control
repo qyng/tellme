@@ -1,11 +1,11 @@
-Source: tellme
+Source: vecl-utils
 Section: devel
 Priority: optional
 Maintainer: Qi Yong <qiy@vecl.cn>
 Standards-Version: 3.9.6
 Build-Depends: debhelper (>= 9.20120311)
 
-Package: tellme
+Package: vecl-utils
 Architecture: all
-Description: tellme
- tellme
+Description: vecl utils
+ tellme ifreset

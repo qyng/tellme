@@ -1,8 +1,8 @@
-# tellme
+# vecl-utils
 
 ## deb build
 dpkg-buildpackage
 
 ## rpm build
-tar Jcf tellme_1.0.tar.xz tellme --xform="s/tellme/tellme-1.0/"
-rpmbuild -ta tellme_1.0.tar.xz
+tar Jcf vecl-utils_x.y.tar.xz vecl-utils --xform="s/vecl-utils/vecl-utils-x.y/"
+rpmbuild -ta vecl-utils_x.y.tar.xz

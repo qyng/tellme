@@ -1,10 +1,17 @@
-tellme (1.1) zesty; urgency=medium
+vecl-utils (1.0) artful; urgency=medium
+
+  * rename to vecl-utils
+  * add ifreset
+
+ -- Qi Yong <qiy@vecl.cn>  Wed, 22 Nov 2017 11:24:01 +0800
+
+tellme (0.2) zesty; urgency=medium
 
   * support rpm
 
  -- Qi Yong <qiy@vecl.cn>  Tue, 17 Oct 2017 11:52:15 +0800
 
-tellme (1.0) xenial; urgency=medium
+tellme (0.1) xenial; urgency=medium
 
   * initial
 
