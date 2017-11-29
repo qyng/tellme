@@ -1,0 +1,33 @@
+#!/usr/bin/expect
+#
+# (c) 2017-05-02  Qi Yong <qiy@vecl.cn>
+#
+# 2017-05-02  initial
+# 2017-09-21  add scp support
+# 2017-11-28  add user argument, support ssh-to
+
+if { $argc < 3 } {
+  spawn -noecho echo usage: ssh-expect <host> <user> <password> \[file\]
+  interact
+  exit
+}
+
+set host  [lrange $argv 0 0]
+set user  [lrange $argv 1 1]
+set passw [lrange $argv 2 2]
+
+if { $argc == 3 } {
+  spawn -noecho ssh -o PubkeyAuthentication=no -l$user $host
+  expect "password:"
+  sleep 1
+  send   "$passw\n"
+  interact
+  exit
+}
+
+set file [lrange $argv 3 3]
+spawn -noecho scp $file $user@$host:
+expect "password:"
+sleep 1
+send   "$passw\n"
+interact

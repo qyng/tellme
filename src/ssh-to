@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# (c) 2017-11-23  Qi Yong <qiy@vecl.cn>
+#
+
+timestamp='2017-11-29'
+
+usage() {
+        me=`echo "$0" | sed -e 's,.*/,,'`
+        echo "$me ($timestamp)"
+        echo "usage: $me [host] [file]"
+        exit
+}
+
+[ "$1" = "-h" ] && usage
+
+if [ ! -r $HOME/.config/ssh-to ]; then
+  echo "$HOME/.config/ssh-to not configured"
+  echo "create with umask 0077, format:"
+  echo "host:address:user:password"
+  exit 1
+fi
+
+while IFS=: read host address user password; do
+  if [ -z "$1" ]; then
+    echo "$host"
+    continue
+  fi
+  if [ "$1" = "$host" ]; then
+    break
+  fi
+done < $HOME/.config/ssh-to
+
+if [ -n "$host" ]; then
+  ssh-expect $address $user $password $2
+fi

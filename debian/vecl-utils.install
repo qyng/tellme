@@ -1,2 +1,4 @@
 src/ifreset usr/sbin/
 src/tellme usr/bin/
+src/ssh-expect usr/bin/
+src/ssh-to usr/bin/

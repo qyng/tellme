@@ -1,3 +1,10 @@
+vecl-utils (1.1) artful; urgency=medium
+
+  * add ssh-to
+
+ -- Qi Yong <qiy@vecl.cn>  Wed, 29 Nov 2017 10:40:54 +0800
+
+
 vecl-utils (1.0) artful; urgency=medium
 
   * rename to vecl-utils

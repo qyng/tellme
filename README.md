@@ -1,4 +1,8 @@
 # vecl-utils
+ ifreset  reset network interface
+ ssh-to   ssh with password automatically
+ tellme   describe commands et al
+
 
 ## deb build
 dpkg-buildpackage

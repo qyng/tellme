@@ -8,4 +8,6 @@ Build-Depends: debhelper (>= 9.20120311)
 Package: vecl-utils
 Architecture: all
 Description: vecl utils
- tellme ifreset
+ ifreset  reset network interface
+ ssh-to   ssh with password automatically
+ tellme   describe commands et al
