@@ -3,7 +3,7 @@
 # (c) 2017-11-23  Qi Yong <qiy@vecl.cn>
 #
 
-timestamp='2017-11-29'
+timestamp='2018-12-26'
 
 usage() {
         me=`echo "$0" | sed -e 's,.*/,,'`
@@ -32,5 +32,13 @@ while IFS=: read host address user password; do
 done < $HOME/.config/ssh-to
 
 if [ -n "$host" ]; then
-  ssh-expect $address $user $password $2
+  if [ -n "$user" ] && [ -n "$password" ]; then
+    ssh-expect $address $user $password $2
+  else
+    if [ -n "$2" ]; then
+      scp "$2" "$address":
+    else
+      ssh $address
+    fi
+  fi
 fi
